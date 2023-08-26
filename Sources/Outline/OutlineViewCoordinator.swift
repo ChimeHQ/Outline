@@ -186,6 +186,38 @@ extension OutlineViewCoordinator {
 				return
 			}
 
+			// find rows that are expanded that should not be...
+			let rows = outlineView.rows { item in
+				guard case let .node(node) = item as? Item else {
+					return false
+				}
+				
+				let id = model.id(for: node)
+				let expanded = currentItems.contains(id)
+				let shouldBeCollapsed = newValue.contains(id) == false
+
+				return expanded && shouldBeCollapsed
+			}
+
+			// .. and collapse them
+			for row in rows {
+				let item = outlineView.item(atRow: row)
+
+				outlineView.collapseItem(item)
+			}
+
+			// expanding items is less straightfoward, because we may have to first expand a parent before finding a un-expanded child
+			outlineView.enumerateItems { item in
+				guard case let .node(node) = item as? Item else {
+					return
+				}
+
+				let id = model.id(for: node)
+
+				if newValue.contains(id) {
+					outlineView.expandItem(item)
+				}
+			}
 		}
 	}
 
