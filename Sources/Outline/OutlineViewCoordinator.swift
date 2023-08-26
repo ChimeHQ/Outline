@@ -8,7 +8,9 @@ public final class OutlineViewCoordinator<Value, Content: View, ID: Hashable>: N
 	typealias Item = Model.Item
 
 	private let model: Model
-	private let expansion: Binding<Set<ID>>
+	var expansion: Binding<Set<ID>> {
+		didSet { expansionStateUpdated() }
+	}
 	private let selection: Binding<Set<ID>>
 	private let content: ContentProvider
 	var outlineView: NSOutlineView! {
@@ -161,5 +163,33 @@ extension OutlineViewCoordinator {
 		let id = NSUserInterfaceItemIdentifier.outlineView
 
 		return "\(id)-\(valueId)"
+	}
+
+	private var expandedItems: Set<ID> {
+		get {
+			let ids = outlineView.expandedItems
+				.compactMap {
+					switch $0 as? Item {
+					case let .node(node):
+						return node
+					default:
+						return nil
+					}
+				}
+				.map { model.id(for: $0) }
+
+			return Set(ids)
+		}
+		set {
+			let currentItems = expandedItems
+			if currentItems == newValue {
+				return
+			}
+
+		}
+	}
+
+	private func expansionStateUpdated() {
+		expandedItems = expansion.wrappedValue
 	}
 }

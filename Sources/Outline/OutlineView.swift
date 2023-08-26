@@ -59,7 +59,7 @@ public struct OutlineView<Value, Content: View, ID: Hashable>: NSViewRepresentab
 	
 	public func updateNSView(_ view: NSOutlineView, context: Context) {
 		context.coordinator.data = data
-//		context.coordinator.expandedItems = expansion.wrappedValue
+		context.coordinator.expansion = expansion
 	}
 
 	public func makeCoordinator() -> OutlineViewCoordinator<Value, Content, ID> {

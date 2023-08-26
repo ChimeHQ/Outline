@@ -139,6 +139,32 @@ final class OutlineViewModel<Value, ID: Hashable> {
 			return true
 		}
 	}
+
+//	func item(for targetId: ID) -> Item? {
+//		if rootId == targetId {
+//			return rootItem
+//		}
+//
+//		traverse(rootNode) { node in
+//			let id = id(for: node)
+//
+//			if id == targetId {
+//				return item(for: id)
+//			}
+//		}
+//		for child in rootNode.children
+//		rootNode.children
+//	}
+//
+//	private func traverse(_ node: Node, block: (Node) -> Void) {
+//		block(node)
+//
+//		if case let .loaded(nodes) = node.children {
+//			for child in nodes {
+//				traverse(child, block: block)
+//			}
+//		}
+//	}
 }
 
 extension OutlineViewModel {
