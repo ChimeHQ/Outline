@@ -1,5 +1,9 @@
-[![License][license badge]][license]
+<div align="center">
+
 [![Platforms][platforms badge]][platforms]
+[![Discord][discord badge]][discord]
+
+</div>
 
 # Outline
 A SwiftUI wrapper around NSOutlineView that supports lazy child loading.
@@ -43,7 +47,7 @@ public struct Navigator: View {
             data: model.outlineData,     // core outline tree data
             expansion: $model.expansion, // control expansion state
             selection: $model.selection, // .. and selection
-            configuration: FileNavigatorModel.configureView // optionally customize the underlying NSOutlineView
+            configuration: OutlineModel.configureView // optionally customize the underlying NSOutlineView
         ) { value in
             Text(value.name)
         }
@@ -53,17 +57,15 @@ public struct Navigator: View {
 
 ## Contributing and Collaboration
 
+I would love to hear from you! Issues or pull requests work great. A [Discord server][discord] is also available for live help, but I have a strong bias towards answering in the form of documentation.
+
 I prefer collaboration, and would love to find ways to work together if you have a similar project.
 
 I prefer indentation with tabs for improved accessibility. But, I'd rather you use the system you want and make a PR than hesitate because of whitespace.
 
-## Suggestions and Feedback
-
-I'd love to hear from you! Get in touch via an issue or pull request.
-
 By participating in this project you agree to abide by the [Contributor Code of Conduct](CODE_OF_CONDUCT.md).
 
-[license]: https://opensource.org/licenses/BSD-3-Clause
-[license badge]: https://img.shields.io/github/license/ChimeHQ/Outline
 [platforms]: https://swiftpackageindex.com/ChimeHQ/Outline
 [platforms badge]: https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2FChimeHQ%2FOutline%2Fbadge%3Ftype%3Dplatforms
+[discord]: https://discord.gg/esFpX6sErJ
+[discord badge]: https://img.shields.io/badge/Discord-purple?logo=Discord&label=Chat&color=%235A64EC
